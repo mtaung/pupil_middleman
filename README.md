@@ -25,6 +25,7 @@ The middleman will run up to a certain point, based on whether you have pupil-re
 
 ## TODO
 
+* Implement an actual exit method
 * Time-sync implementation for compatibility with Pupil Labs' system.
 * Completion of TCP ports through either multi-threading or non-blocking implementation. 
 * Better log file generation 

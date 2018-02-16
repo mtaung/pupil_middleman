@@ -1,3 +1,9 @@
+"""
+This is a very simple script to debug/demo the way middleman retrieves & sends bytes.
+What is seen here can be implemented in any language, to comm. with pupil-recorder
+especially those without native zmq support. 
+"""
+
 import socket
 import time
 

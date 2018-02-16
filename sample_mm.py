@@ -1,4 +1,4 @@
-from pupil_middleman import pupilsocket, pytcp, pyudp
+from mm_modules import pupilsocket, pytcp, pyudp
 import logging
 from time import time
 

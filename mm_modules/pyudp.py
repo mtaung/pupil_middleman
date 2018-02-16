@@ -6,7 +6,7 @@ class UDPsocket:
     Simple python object to bind to a UDP socket. 
     """
 
-    def __init__(self, ip, port, buffersize=1024):  
+    def __init__(self, ip, port, buffersize=1024):
         self.ip = ip
         self.port = port
         self.buffersize = buffersize
