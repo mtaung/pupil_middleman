@@ -1,5 +1,5 @@
-# pupil-middleman
-Simple python wrapper for communicating with pupil and external programmes that do not support zeromq.
+# Pupil Middleman
+Simple python wrapper for communicating with pupil and external programmes that do not support zeromq. It is very imperfect but I hope it helps people that are struggling to get their Pupil trackers live.
 
 ## What does it do?
 Frankly, nothing illuminating. I wrote this as a simple solution to a problem I've been having using systems that do not support zeromq natively. 
