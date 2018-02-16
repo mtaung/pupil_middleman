@@ -11,7 +11,6 @@ class UDPsocket:
         self.port = port
         self.buffersize = buffersize
         self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.DEBUG)
         self.logger.info('Creating UDP socket object')
 
     def sock_bind(self):
