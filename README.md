@@ -3,8 +3,10 @@ Simple python wrapper for communicating with pupil and external programmes that 
 
 ## What does it do?
 Frankly, nothing illuminating. I wrote this as a simple solution to a problem I've been having using systems that do not support zeromq natively. 
+
 This middleman will allow for connections to any various sockets on other programs and will convert bytes received from said sockets into annotations (triggers) to be sent to pupil-recorder.
 There is also basic logging to try and debug anything that may go wrong during a session. 
+
 The code is object oriented and hopefully easy to parse and understand. I have done my best to comment it as necessary. If there are problems with this, please do contact me. 
 
 ## Some warnings

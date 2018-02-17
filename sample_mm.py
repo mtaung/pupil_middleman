@@ -2,13 +2,15 @@ from mm_modules import pupilsocket, pytcp, pyudp
 import logging
 from time import time
 
+time_fn = time
+
 ## Establish Logger
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(message)s')
 
-fileHandler = logging.FileHandler('{}.log'.format(time()))
+fileHandler = logging.FileHandler('{}.log'.format(time_fn()))
 fileHandler.setLevel(logging.DEBUG)
 fileHandler.setFormatter(formatter)
 
@@ -33,7 +35,9 @@ pupilLink.notify({'subject': 'start_plugin',
                     'args': {}})
 logger.info('Pupil-Recorder Annotations plugin prompted.')
 
-pupilLink.set_time(time())
+## The Pupil developers recommend using their Sync system
+## Time() here will work but won't be millisecond accurate.
+pupilLink.set_time(time_fn())
 logger.info('Pupil-Recorder time set.')
 
 ## Define Triggers using a dict for pseudo switch cases
@@ -41,24 +45,23 @@ logger.info('Pupil-Recorder time set.')
 def trigStop():
     pupilLink.stop_recording()
 def trig1():
-    pupilLink.send_trigger('Event1', timestamp = time())
+    pupilLink.send_trigger('Event1', timestamp=time_fn())
 def trig2():
-    pupilLink.send_trigger('Event2', timestamp = time())
+    pupilLink.send_trigger('Event2', timestamp=time_fn())
 def trig3():
-    pupilLink.send_trigger('Event3', timestamp = time())
+    pupilLink.send_trigger('Event3', timestamp=time_fn())
 def trig4():
-    pupilLink.send_trigger('Event4', timestamp = time())
+    pupilLink.send_trigger('Event4', timestamp=time_fn())
 
 triggerDict = {
     b'0': trigStop,
-    b'1': trig1,
+    b'1': pupilLink.start_recording,
     b'2': trig2,
     b'3': trig3,
     b'4': trig4
     }
 
 ## Start recording & listen to udpListeningSock
-pupilLink.start_recording()
 while True:
     data, time = udpListeningSock.sock_listen()
     print(data, time)
