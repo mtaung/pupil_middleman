@@ -34,7 +34,7 @@ class ZMQsocket:
         self.socket.send(payload)
         self.logger.info('Payload sent: {}'.format(payload))
         return self.socket.recv_string()
-    
+
     def send_trigger(self, label, timestamp, duration=0.):
         """
         Sends a notification that delivers a trigger to Pupil-Recorder.
@@ -59,8 +59,8 @@ class ZMQsocket:
         self.socket.send_string('c')
         self.logger.info(self.socket.recv_string())
 
-    def start_recording(self):
-        self.socket.send_string('R')
+    def start_recording(self, recTitle):  # TOM EDITED TO ADD CUSTOM TITLE
+        self.socket.send_string('R %s'%recTitle)
         self.logger.info(self.socket.recv_string())
 
     def stop_recording(self):
