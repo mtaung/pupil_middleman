@@ -1,9 +1,12 @@
-
 from mm_modules import pupilsocket, pytcp, pyudp
 import logging
 from time import time
 
 time_fn = time
+
+# Begin runtime with entry of ppID
+# This is used later for setting dir/file names
+participantID = input('Participant ID: ')
 
 ## Establish Logger
 logger = logging.getLogger()
@@ -11,7 +14,7 @@ logger.setLevel(logging.DEBUG)
 
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(message)s')
 
-fileHandler = logging.FileHandler('{}.log'.format(time_fn()))
+fileHandler = logging.FileHandler('{}_{}.log'.format(participantID, time_fn()))
 fileHandler.setLevel(logging.DEBUG)
 fileHandler.setFormatter(formatter)
 
@@ -43,6 +46,18 @@ logger.info('Pupil-Recorder time set.')
 
 ## Define Triggers using a dict for pseudo switch cases
 ## Note that this solution will not handle mixed cases
+# Commands
+def startrec():
+    # This is currently set to receive input from stimuli code 
+    # you may want to just change recTitle input to ParticipantID
+    pupilLink.start_recording(recTitle=data[10:len(data)])
+def stoprec():
+    pupilLink.stop_recording()
+def startcal():
+    pupilLink.start_calibration()
+def stopcal():
+    pupilLink.stop_calibration()
+# Triggers
 def trig0():
     pupilLink.send_trigger('Event0', timestamp=time_fn())
 def trig1():
@@ -55,6 +70,12 @@ def trig4():
     pupilLink.send_trigger('Event4', timestamp=time_fn())
 
 triggerDict = {
+    # Commands
+    b'START_REC' : startrec,
+    b'STOP_REC' : stoprec,
+    b'START_CAL' : startcal,
+    b'STOP_CAL' : stopcal,
+    # Triggers
     b'0': trig0,
     b'1': trig1,
     b'2': trig2,
@@ -66,13 +87,3 @@ triggerDict = {
 while True:
     data, time = udpListeningSock.sock_listen()
     print(data, time)
-    if(data[0:9]==b'START_REC'): 
-        pupilLink.start_recording(recTitle=data[10:len(data)])
-    elif(data[0:8]==b'STOP_REC'):
-        pupilLink.stop_recording()
-    elif(data[0:9]==b'START_CAL'): 
-        pupilLink.start_calibration()
-    elif(data[0:8]==b'STOP_CAL'):
-        pupilLink.stop_calibration()
-    else:
-        triggerDict[data]()      
