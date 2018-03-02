@@ -4,16 +4,16 @@
 % (press SPACEBAR to exit).
 % 2. Enable easy resizing of markers
 % 3. Enable marker distance from screen corners to be easily adjusted
-%
 % Author: Tom Bullock, UCSB Attention Lab
 % Date: 02.05.18
 % Notes: 
 % Marker size may need to be changed depending on distance from screen and 
 % moving markers away from corners may be necessary for successful
 % detection.  
-% This example script imports Markers 01-04
-% For physical printing, enlarging 160% in print dialogue box to create 
-% 4.5*4.5 cm markers works well
+% This example script imports Markers 01-04 (make sure the stim path below
+% is correct).
+% Note to self: for physical printing, enlarging 160% in print dialogue box 
+% to create 4.5*4.5 cm markers works well
 %==========================================================================
 
 clear 
