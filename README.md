@@ -1,37 +1,38 @@
-# Pupil Middleman
-Simple python wrapper for communicating with pupil and external programmes that do not support zeromq. It is very imperfect but I hope it helps people that are struggling to get their Pupil trackers live.
+# Pupil Middleman Server with MATLAB support
+
+## Contents
+* Simple python wrapper function for communicating with pupil_capture and external stimulus presentation programs that do not support zeromq, such as MATLAB.
+* Examples for pupil_capture control using MATLAB and PTB3
+* Potentially useful MATLAB support functions.
+
+This repository also contains examples for pupil_capture control using MATLAB and Psychtoolbox 3, as and some other (potentially) useful MATLAB support scripts. 
 
 ## What does it do?
-Frankly, nothing illuminating. I wrote this as a simple solution to a problem I've been having using systems that do not support zeromq natively. 
-
-This middleman will allow for connections to any various sockets on other programs and will convert bytes received from said sockets into annotations (triggers) to be sent to pupil-recorder.
-There is also basic logging to try and debug anything that may go wrong during a session. 
-
-The code is object oriented and hopefully easy to parse and understand. I have done my best to comment it as necessary. If there are problems with this, please do contact me. 
+Provides a simple solution to allow programs such as MATLAB to communicate with pupil_capture.
+Enables external programs to connect via udp listening socket and converts bytes received from the socket into "annotations" (pupil-labs's name for events/triggers) to be sent to pupil_capture.
+Generates basic logs for debugging purposes.
 
 ## Some warnings
-First, this was an excercise on my part to better understand the pupil communications system and python in general. I am not comprehensively confident in my abilities with python, and you should take this as a foreword of how things may go wrong with this module. 
-
-As of right now, the middleman only works with UDP sockets. These are [unreliable](https://www.wikiwand.com/en/Reliability_(computer_networking)) and should be used with caution. I am not responsible for how you deploy these in your work, and have done my best to detail the limitations of this module. 
-
+Both authors are relatively inexperienced with python, so it's very possible that there is a better way to do this!
+UDP sockets can be unreliable (https://www.wikiwand.com/en/Reliability_(computer_networking)), although pilot testing to date suggests that it is possible to create a stable and consistent connection).
 Finally, there is no real implementation of time and jitter compensation/calibration. There is a Time-Sync module by Pupil Labs for this, which I will implement in the future.
 
 ## Getting Started
-
-Everything here is very simple and should work out of the box. 
-Simply run the sample_server.py script to demo how the middleman works. 
+You may need to modify the IP addresses/ports in 'sample_mm.py'
+Simply run 'sample_mm.py' in terminal to start the middleman server. 
 
 ## Running the middleman
-
 The middleman will run up to a certain point, based on whether you have pupil-recorder on or not. You may also want to ping the middleman with some integers. For this, there is a sample trigger dictionary. I may conver this to an if tree later if mixed-cases become a thing. 
 
 ## TODO
-
 * Implement an actual exit method
 * Time-sync implementation for compatibility with Pupil Labs' system.
 * Completion of TCP ports through either multi-threading or non-blocking implementation. 
 * Better log file generation 
-## Acknowledgments
+* Modify 'sample_mm.py' to allow for interactive control i.e. stream eye-tracker data directly to a UDP socket, to allow for gaze-contingent eye-tracking etc. (TOM)
+* Enable interactive calibration via MATLAB/PTB3 (Tom)
 
-* Most of this code is based on a series of helper scripts from Pupil Labs' [pupil-helpers](https://github.com/pupil-labs/pupil-helpers) repository. 
+## Acknowledgments
+* mtaung wrote the python scripts, tombullock wrote the MATLAB scripts.
+* This code draws heavily from Pupil Labs' [pupil-helpers](https://github.com/pupil-labs/pupil-helpers) repository. 
 
