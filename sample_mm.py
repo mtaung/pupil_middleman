@@ -35,6 +35,9 @@ pupilLink.zmq_connect()
 logger.info('Pupil socket connected.')
 
 pupilLink.notify({'subject': 'start_plugin',
+                    'name': 'Log_History',
+                    'args': {}})
+pupilLink.notify({'subject': 'start_plugin',
                     'name': 'Annotation_Capture',
                     'args': {}})
 logger.info('Pupil-Recorder Annotations plugin prompted.')
@@ -43,6 +46,7 @@ logger.info('Pupil-Recorder Annotations plugin prompted.')
 ## Time() here will work but won't be millisecond accurate.
 pupilLink.set_time(time_fn())
 logger.info('Pupil-Recorder time set.')
+pupilLink.send_trigger('Dummy Trigger', timestamp=time_fn())
 
 ## Define Triggers using a dict for pseudo switch cases
 ## Note that this solution will not handle mixed cases
@@ -87,3 +91,5 @@ triggerDict = {
 while True:
     data, time = udpListeningSock.sock_listen()
     print(data, time)
+    if data:
+        triggerDict[data]()
