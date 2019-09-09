@@ -13,7 +13,8 @@ Enables external programs to connect via udp listening socket and converts bytes
 Generates basic logs for debugging purposes.
 
 ## Some warnings
-Both authors are relatively inexperienced with python, so it's very possible that there is a better way to do this!
+This is a barebones middleman server that is fit for our use cases, not necessarily optimal for yours. Further, the implementtion here is outdated beyond pupil services 1.8-26, and it won't work with the newer rollouts. We will update this in the future when we have to deploy these hardware in our labs again. Pupil also provide native matlab support now, so if you're only needing that, you no longer require this tool.
+
 UDP sockets can be unreliable (https://www.wikiwand.com/en/Reliability_(computer_networking)), although pilot testing to date suggests that it is possible to create a stable and consistent connection).
 Finally, there is no real implementation of time and jitter compensation/calibration. There is a Time-Sync module by Pupil Labs for this, which I will implement in the future.
 
