@@ -28,14 +28,6 @@ Simply run 'sample_mm.py' in terminal to start the middleman server.
 ## Running the middleman
 The middleman will run up to a certain point, based on whether you have pupil-recorder on or not. You may also want to ping the middleman with some integers. For this, there is a sample trigger dictionary. I may conver this to an if tree later if mixed-cases become a thing. 
 
-## TODO
-* Implement an actual exit method
-* Time-sync implementation for compatibility with Pupil Labs' system.
-* Completion of TCP ports through either multi-threading or non-blocking implementation. 
-* Better log file generation 
-* Modify 'sample_mm.py' to allow for interactive control i.e. stream eye-tracker data directly to a UDP socket, to allow for gaze-contingent eye-tracking etc. (TOM)
-* Enable interactive calibration via MATLAB/PTB3 (Tom)
-
 ## Acknowledgments
 * mtaung wrote the python scripts, tombullock wrote the MATLAB scripts.
 * This code draws heavily from Pupil Labs' [pupil-helpers](https://github.com/pupil-labs/pupil-helpers) repository. 
