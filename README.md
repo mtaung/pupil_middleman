@@ -1,5 +1,8 @@
 # Pupil Middleman Server with MATLAB support
 
+## Deprecation Notice
+This repository was built for an older version of pupil which is no longer supported. An updated version of this software is available at [this repo](https://github.com/mtaung/eye_socket), but that is also no longer maintained. It's likely that the tool you want will be on the [pupil-helpers](https://github.com/pupil-labs/pupil-helpers) repository. 
+
 ## Contents
 * Simple python wrapper function for communicating with pupil_capture and external stimulus presentation programs that do not support zeromq, such as MATLAB.
 * Examples for pupil_capture control using MATLAB and PTB3
